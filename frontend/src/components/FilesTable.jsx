@@ -1,52 +1,46 @@
+const BACKEND_BASE = "http://127.0.0.1:8000";
+
 export default function FilesTable({ files }) {
+  if (!files || files.length === 0) return null;
+
   return (
-    <>
-      <h3 style={{ marginBottom: "15px" }}>📑 Split Loan Agreements</h3>
+    <table className="files-table">
+      <thead>
+        <tr>
+          <th>Ref No</th>
+          <th>File Name</th>
+          <th>View</th>
+          <th>Download</th>
+        </tr>
+      </thead>
 
-      <table style={{ width: "100%", borderCollapse: "collapse" }}>
-        <thead>
-          <tr style={{ background: "#f3f4f6" }}>
-            <th style={th}>Loan ID</th>
-            <th style={th}>File Name</th>
-            <th style={th}>Action</th>
+      <tbody>
+        {files.map((file, index) => (
+          <tr key={index}>
+            <td>{file.ref_no}</td>
+            <td>{file.file_name}</td>
+            <td>
+              <a
+                className="btn btn-view"
+                href={`${BACKEND_BASE}${file.file_url}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View
+              </a>
+            </td>
+            <td>
+              <a
+                className="btn btn-download"
+                href={`${BACKEND_BASE}${file.file_url}`}
+                download
+              >
+                Download
+              </a>
+            </td>
           </tr>
-        </thead>
-
-        <tbody>
-          {files.map((file, index) => (
-            <tr key={index}>
-              <td style={td}>{file.loan_id}</td>
-              <td style={td}>{file.file_name}</td>
-              <td style={td}>
-                <a href={file.file_url} style={link}>
-                  View
-                </a>{" "}
-                |{" "}
-                <a href={file.file_url} download style={link}>
-                  Download
-                </a>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </>
+        ))}
+      </tbody>
+    </table>
   );
 }
-
-const th = {
-  textAlign: "left",
-  padding: "12px",
-  fontWeight: "600",
-};
-
-const td = {
-  padding: "12px",
-  borderBottom: "1px solid #e5e7eb",
-};
-
-const link = {
-  color: "#2563eb",
-  textDecoration: "none",
-  fontWeight: "500",
-};

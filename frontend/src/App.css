@@ -1,42 +1,248 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+* {
+  box-sizing: border-box;
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eef2f7, #dfe7ef);
+  color: #1f2937;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;   /* horizontal center */
+  align-items: flex-start;   /* keep it towards top */
+  padding-top: 40px;
+  padding-bottom: 40px;/* vertical spacing from top */   
+}
+
+
+/* Main card */
+.card {
+  background: #f8fafc;
+  border-radius: 18px;
+  padding: 36px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  width: 720px;
+  max-width: 90%;
+
+}
+
+/* Header */
+.header h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.header p {
+  margin-top: 8px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Upload area */
+.upload-area {
+  margin-top: 28px;
+  padding: 36px 20px;
+  border: 2px dashed #cbd5e1;
+  border-radius: 14px;
+  background-color: #f9fbfd;
+  cursor: pointer;
+}
+
+.upload-area:hover {
+  background-color: #f1f5f9;
+}
+
+/* Cloud icon */
+.upload-icon {
+  font-size: 40px;
+  color: #64748b;
+}
+
+/* Upload text */
+.upload-text {
+  margin-top: 12px;
+  color: #475569;
+  font-size: 14px;
+}
+
+/* Hidden file input */
+.upload-area input[type="file"] {
+  display: none;
+}
+
+/* Choose file button */
+.choose-btn {
+  margin-top: 18px;
+  padding: 8px 16px;
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.choose-btn:hover {
+  background-color: #1d4ed8;
+}
+
+/* Status text */
+.status-loading {
+  margin-top: 12px;
+  color: #2563eb;
+}
+
+.status-success {
+  margin-top: 12px;
+  color: #16a34a;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 24px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+thead {
+  background-color: #e5e7eb;
+}
+
+tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+a {
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Files Table ===== */
+
+.files-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  background-color: #ffffff;
+}
+
+.files-table th {
+  background-color: #cfe6f5; /* light blue header */
+  color: #1f2937;
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #cbd5e1;
+  font-size: 14px;
+}
+
+.files-table td {
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.files-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 6px;
+  text-decoration: none;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* View button */
+.btn-view {
+  background-color: #3b82f6;
+  color: #ffffff;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-view:hover {
+  background-color: #2563eb;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Download button */
+.btn-download {
+  background-color: #60a5fa;
+  color: #ffffff;
 }
 
-.card {
-  padding: 2em;
+.btn-download:hover {
+  background-color: #3b82f6;
 }
 
-.read-the-docs {
-  color: #888;
+.pagination {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  border: 1px solid #cbd5e1;
+  background: white;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.loader-box {
+  background: white;
+  padding: 24px 32px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  text-align: center;
 }
